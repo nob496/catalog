@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TRAIL INFO</title>
+	<link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+
+<body>
+	{% include "header.html" %}
+	<h2>{{park.park}}</h2>
+	<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li> <strong> {{ message }} </strong> </li>
+	    {% endfor %}
+	  </ul>
+	  {% endif %}
+	  {% endwith %}
+	</div>
+	<p><a href = "{{url_for('newTrailInfo', park_id = park.id)}}">-> Add New Trail</a></p>
+  {% for i in trails %}
+	<div class = 'pane'>
+    <p id = "trail"><span>Trail</span>: <a href = "{{i.url}}" target="_blank">{{i.trail}}</a></p>
+    <ul>
+			<li><span>Date</span>: {{i.date}}</li>
+      <li><span>Address</span>: {{i.address}}</li>
+      <li><span>Distance</span>: {{i.distance}}</li>
+      <li><span>Elevation</span>: {{i.elevation}}</li>
+      <li><span>Level</span>: {{i.level}}</li>
+    </ul>
+		<p><a href="{{url_for('editTrailInfo', park_id = i.park_id, id = i.id)}}" class="btn-square">Edit Trail Info</a>
+		<a href="{{url_for('deleteTrailInfo', park_id = i.park_id, id = i.id)}}" class="btn-square">Delete Trail Info</a></p>
+	</div>
+	{% endfor %}
+	<a href = '{{url_for('hikingDays')}}'> Home </a>
+</body>
+</html>

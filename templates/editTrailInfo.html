@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>EDIT TRAIL INFO</title>
+	<link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+<h2> Edit Trail Info </h2>
+<form class = 'pane' action="{{ url_for('editTrailInfo',park_id=trail.park_id, id=trail.id)}}" method = 'post'>
+
+<dl>
+	<dt>Trail Name:</dt>
+		<dd><input type ='text' size='100' name='trail' required minlength="1" placeholder = '{{trail.trail }}'></dd>
+	<dt>Date:</dt>
+		<dd><input type ='text' size='100' name='date' placeholder = '{{trail.date }}'></dd>
+	<dt>URL:</dt>
+		<dd><textarea name = 'url' rows = '5' cols='100' placeholder = '{{trail.url }}'></textarea></dd>
+	<dt>Adress:</dt>
+		<dd><textarea name = 'address' rows = '5' cols='100' placeholder = '{{trail.address }}'></textarea></dd>
+	<dt>Distance:</dt>
+		<dd><input type = 'text' size = '15' name='distance' placeholder = '{{trail.distance }}'></dd>
+	<dt>Elevation:</dt>
+		<dd><input type = 'text' size = '15' name='elevation' placeholder = '{{trail.elevation }}'></dd>
+	<dt>Level:</dt>
+	{% if trail.level == 'Not Clear' %}
+		<dd><input type ='radio' name='level' value='Not Clear'checked >Not Clear</dd>
+	{%else%}
+	  <dd><input type ='radio' name='level' value='Not Clear' >Not Clear</dd>
+	{% endif %}
+	{% if trail.level == 'EASY' %}
+		<dd><input type ='radio' name='level' value='EASY'checked >EASY</dd>
+	{%else%}
+	  <dd><input type ='radio' name='level' value='EASY' >EASY</dd>
+  {% endif %}
+  {% if trail.level == 'MODERATE' %}
+    <dd><input type ='radio' name='level' value='MODERATE' checked>MODERATE</dd>
+  {%else%}
+		<dd><input type ='radio' name='level' value='MODERATE'>MODERATE</dd>
+  {% endif %}
+	{% if trail.level == 'HARD' %}
+		<dd><input type ='radio' name='level' value='HARD'checked >HARD</dd>
+	{% else %}
+	   <dd><input type ='radio' name='level' value='HARD'>HARD</dd>
+	{% endif %}
+</dl>
+
+<input type='submit' value='Edit'>
+
+<a href = '{{url_for('trailInfo', park_id = trail.park_id)}}'> Cancel </a>
+</form>
+</body>
+</html>

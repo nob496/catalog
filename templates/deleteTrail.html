@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	<meta charset="utf-8">
+	<title>DELETE TRAIL INFO</title>
+</head>
+<body>
+  <h2> Are you sure you want to delete {{trail.trail}}? </h2>
+  <form class = 'pane' action="{{ url_for('deleteTrailInfo', park_id=trail.park_id, id=trail.id)}}" method = 'post'>
+    <input type='submit', value = 'Delete'>
+  </form>
+<a href = '{{url_for('trailInfo', park_id = trail.park_id)}}'> Cancel </a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>NEW TRAIL INFO</title>
+	<link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+<h2> New Trail Info </h2>
+<form class = 'pane' action="{{ url_for('newTrailInfo',park_id=park.id) }}" method = 'post'>
+
+<dl>
+	<dt>Trail Name:</dt>
+		<dd><input type ='text' size='100' name='trail' required minlength="1"></dd>
+	<dt>Date:</dt>
+		<dd><input type ='text' size='100' name='date'></dd>
+	<dt>URL:</dt>
+		<dd><textarea name = 'url' rows = '5' cols='100'></textarea></dd>
+	<dt>Adress:</dt>
+		<dd><textarea name = 'address' rows = '5' cols='100'></textarea></dd>
+	<dt>Distance:</dt>
+		<dd><input type = 'text' size = '15' name='distance'></dd>
+	<dt>Elevation:</dt>
+		<dd><input type = 'text' size = '15' name='elevation'></dd>
+	<dt>Level:</dt>
+		<dd><input type ='radio' name='level' value='Not Clear'checked >Not Clear</dd>
+	  <dd><input type ='radio' name='level' value='EASY' >EASY</dd>
+		<dd><input type ='radio' name='level' value='MODERATE'>MODERATE</dd>
+	  <dd><input type ='radio' name='level' value='HARD'>HARD</dd>
+</dl>
+
+<input type='submit' value='Create'>
+
+<a href = '{{url_for('trailInfo', park_id = park.id)}}'> Cancel </a>
+</form>
+</body>
+</html>

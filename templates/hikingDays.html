@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HIKING RECORD</title>
+	<link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+</head>
+
+<body>
+	{% include "header.html" %}
+	<h1>Hiking Days!</h1>
+	<h3>List of National/State Parks for Hiking</h3>
+
+	<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li> <strong> {{ message }} </strong> </li>
+	    {% endfor %}
+	  </ul>
+	  {% endif %}
+	  {% endwith %}
+	</div>
+
+	<p><a href = "{{url_for('newPark')}}">-> Add New Park</a></p>
+	{% for i in parks %}
+	<div class = 'parkinfo'>
+	<span class = 'park'><a href = '{{url_for('trailInfo', park_id = i.id) }}'> {{i.park}}</a></span>
+	<p><a href="{{url_for('editPark', park_id = i.id)}}" class="btn-square" style="position:relative; left: 55%;">Edit Park</a>
+	<a href="{{url_for('deletePark', park_id = i.id)}}" class="btn-square" style="position:relative; left: 55%;">Delete Park</a></p>
+</div>
+	{% endfor %}
+</body>
+</html>

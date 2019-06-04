@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  <meta charset="utf-8">
+	<title>NEW PARK</title>
+</head>
+<body>
+
+<h2>Add New Park</h2>
+
+<div class = 'pane'>
+<form action="{{ url_for('newPark')}}" method = 'post'>
+
+<dl>
+	<dt>Park Name:</dt>
+		<dd><input type ='text' size='100' name='name' required minlength="1"></dd>
+</dl>
+<input type='submit' value='Create'>
+<a href = '{{url_for('hikingDays')}}'> Cancel </a>
+</form>
+</div>
+
+</body>
